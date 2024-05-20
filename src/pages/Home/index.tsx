@@ -114,7 +114,6 @@ export default function Home() {
                         gap: '1rem',
                         autoplay: true,
                         lazyload: 'nearby',
-                        wheel: true,
                     }}
                     aria-label="My Favorite Images"
                     className="pb-5"
