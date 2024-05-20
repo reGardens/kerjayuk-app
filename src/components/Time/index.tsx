@@ -13,7 +13,7 @@ export default function Time({ icon, time, desc, fontWeight, textColor }: Props)
         <div className="grid gap-1 justify-center text-center">
             {icon}
             <p className={`font-${fontWeight} text-lg text-${textColor}`}>{time}</p>
-            <span className="text-xs opacity-70 font-semibold">{desc}</span>
+            <span className="text-xs opacity-70 font-semibold leading-none">{desc}</span>
         </div>
 
     )

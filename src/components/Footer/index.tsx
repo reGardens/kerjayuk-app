@@ -1,7 +1,3 @@
-// import Box from '@mui/material/Box';
-// import BottomNavigation from '@mui/material/BottomNavigation';
-// import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-// import Paper from '@mui/material/Paper';
 import { useEffect, useRef, useState } from 'react';
 import CottageIcon from '@mui/icons-material/Cottage';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
@@ -17,7 +13,6 @@ export default function Footer() {
 
     const handleMenuClick = (menu: string) => {
         setActiveMenu(menu);
-        // Action to perform on menu click
         console.log("Menu clicked:", menu);
     };
 
@@ -26,42 +21,42 @@ export default function Footer() {
     }, [value]);
 
     return (
-        <div className="pb-24 bg-white !z-[999] relative menu" ref={ref}>
+        <div className="pb-28 bg-white !z-[999] relative menu" ref={ref}>
             <div className="grid grid-cols-5 fixed bottom-0 bg-white w-full max-w-screen-sm shadow-shadowNavigation">
                 <Button
                     className={`${activeMenu === "Home" ? "active" : ""} !grid !justify-center !items-center !text-[#a0a0a0] !py-2`}
                     onClick={() => handleMenuClick("Home")}
                 >
                     <CottageIcon sx={{ textAlign: 'center', margin: '0 auto' }} className='!pb-1 !text-[2.1rem]' />
-                    <span className='text-xs font-bold !capitalize'>Home</span>
+                    <span className='text-[10px] sm:text-xs font-bold !capitalize'>Home</span>
                 </Button>
                 <Button
                     className={`${activeMenu === "Attendance" ? "active" : ""} !grid !justify-center !items-center !text-[#a0a0a0] !py-2`}
                     onClick={() => handleMenuClick("Attendance")}
                 >
                     <EventAvailableIcon sx={{ textAlign: 'center', margin: '0 auto' }} className='!pb-1 !text-[2.1rem]' />
-                    <span className='text-xs font-bold !capitalize'>Attendance</span>
+                    <span className='text-[10px] sm:text-xs font-bold !capitalize'>Attendance</span>
                 </Button>
                 <Button
                     className={`${activeMenu === "CheckOut" ? "active" : ""} !grid !justify-center !items-center !text-[#a0a0a0] !py-2`}
                     onClick={() => handleMenuClick("CheckOut")}
                 >
-                    <LogoutIcon sx={{ textAlign: 'center', margin: '0 auto' }} className='!text-[2.1rem] !bg-mainColor-100 !rounded-full !scale-[2.1] !p-[9px] !text-white !-translate-y-[1.6rem] !shadow-2xl' />
-                    <span className='text-xs font-bold !capitalize'>Check Out</span>
+                    <LogoutIcon sx={{ textAlign: 'center', margin: '0 auto' }} className='!text-[2.1rem] !bg-mainColor-100 !rounded-full !scale-[2.1] !p-[9px] !text-white !-translate-y-[1.6rem] !shadow-[0px_-1px_2px_1px_rgba(0,0,0,0.3)]' />
+                    <span className='text-[10px] sm:text-xs font-bold !capitalize'>Check Out</span>
                 </Button>
                 <Button
                     className={`${activeMenu === "Form" ? "active" : ""} !grid !justify-center !items-center !text-[#a0a0a0] !py-2`}
                     onClick={() => handleMenuClick("Form")}
                 >
                     <FeedIcon sx={{ textAlign: 'center', margin: '0 auto' }} className='!pb-1 !text-[2.1rem]' />
-                    <span className='text-xs font-bold !capitalize'>Form</span>
+                    <span className='text-[10px] sm:text-xs font-bold !capitalize'>Form</span>
                 </Button>
                 <Button
                     className={`${activeMenu === "Setting" ? "active" : ""} !grid !justify-center !items-center !text-[#a0a0a0] !py-2`}
                     onClick={() => handleMenuClick("Setting")}
                 >
                     <SettingsIcon sx={{ textAlign: 'center', margin: '0 auto' }} className='!pb-1 !text-[2.1rem]' />
-                    <span className='text-xs font-bold !capitalize'>Setting</span>
+                    <span className='text-[10px] sm:text-xs font-bold !capitalize'>Setting</span>
                 </Button>
             </div>
         </div>

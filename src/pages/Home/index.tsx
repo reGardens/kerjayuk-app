@@ -41,7 +41,7 @@ export default function Home() {
 
     return (
         <Layout>
-            <section className="pb-7 px-5">
+            <section className="pb-7 px-5 mb-4">
                 <p className="font-semibold text-lg mb-4">Hi, Good Morning!</p>
 
                 <div className="w-full mx-auto grid grid-cols-3 grid-rows-2 bg-gradient-to-br from-mainColor-100 to-mainColor-900 p-5 rounded-2xl shadow-lg text-white">
@@ -55,17 +55,17 @@ export default function Home() {
                         </Stack>
                         <div className="">
                             <p className="font-bold text-lg tracking-wider leading-none md:leading-normal">Tabay</p>
-                            <span className="opacity-70 italic text-sm">UI/UX Designer</span>
+                            <span className="opacity-70 italic text-xs sm:text-sm">UI/UX Designer</span>
                         </div>
                     </div>
 
                     <div className="text-right col-span-1">
-                        <span className="opacity-70 italic text-sm">Member since</span>
-                        <p className="sm:text-lg font-bold tracking-wider leading-none">01 Juni 2021</p>
+                        <span className="opacity-70 italic  text-xs sm:text-sm">Member since</span>
+                        <p className="text-sm sm:text-lg font-bold tracking-wider leading-none">01 Juni 2021</p>
                     </div>
 
                     <div className="self-end col-span-2">
-                        <span className="opacity-70 text-sm">Location</span>
+                        <span className="opacity-70  text-xs sm:text-sm">Location</span>
                         <p className="font-bold tracking-wider leading-none">Kantor Sahid</p>
                     </div>
 
@@ -75,26 +75,26 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="pb-7 px-5">
+            <section className="pb-7 px-5 mb-4">
                 <p className="font-semibold text-lg mb-4">Today's activity</p>
 
                 <div className="flex justify-between px-4 sm:px-10">
                     <Time
-                        icon={<AccessTimeIcon className="!mx-auto !text-[2.2rem] !text-mainColor-100 !mb-1.5" />}
+                        icon={<AccessTimeIcon className="!mx-auto !text-[2.2rem] !text-mainColor-100" />}
                         time={"08:30"}
                         desc={"Check In"}
                         fontWeight={"bold"}
                         textColor={""}
                     />
                     <Time
-                        icon={<AccessTimeIcon className="!mx-auto !text-[2.2rem] !text-mainColor-100 !mb-1.5" />}
+                        icon={<AccessTimeIcon className="!mx-auto !text-[2.2rem] !text-mainColor-100" />}
                         time={"03:00:00"}
                         desc={"Check In"}
                         fontWeight={"extrabold"}
                         textColor={"mainColor-100"}
                     />
                     <Time
-                        icon={<AccessTimeIcon className="!mx-auto !text-[2.2rem] !text-mainColor-100 !mb-1.5" />}
+                        icon={<AccessTimeIcon className="!mx-auto !text-[2.2rem] !text-mainColor-100" />}
                         time={"08:30"}
                         desc={"Check In"}
                         fontWeight={"bold"}
@@ -103,7 +103,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="pb-7">
+            <section className="pb-7 mb-4">
                 <p className="font-semibold text-lg mb-4 px-5">PCS News</p>
 
                 <Splide
@@ -125,14 +125,14 @@ export default function Home() {
             </section>
 
             <section className="pb-7 px-5">
-                <p className="font-semibold text-lg mb-4 px-5">Online</p>
+                <p className="font-semibold text-lg mb-4">Online</p>
 
                 <div className="w-full flex justify-center">
                     <AvatarGroup
                         max={maxAvatars}
                         renderSurplus={(surplus) =>
                             <div className="bg-mainColor-100 flex justify-center items-center w-full h-full">
-                                <span className="text-xs mx-auto text-center ">
+                                <span className="text-xs mx-auto text-center">
                                     {surplus.toString()} <br /> more
                                 </span>
                             </div>
@@ -141,10 +141,16 @@ export default function Home() {
                         className="avatar-online-custom shadow-shadowCustom rounded-2xl py-4 px-6"
                     >
                         {dataUserOnline.map((res: DataProps, index: number) => {
+                            // take first name
+                            const regex = /^(\w+)/;
+                            const takeFirstName = res.name;
+                            const match = takeFirstName?.match(regex);
+                            const firstWord = match ? match[1] : "";
+
                             return (
                                 <div key={index} className="text-center">
                                     <Avatar alt={res.name} src="/static/images/avatar/1.jpg" />
-                                    <p className="font-extrabold text-xs">{res.name}</p>
+                                    <p className="font-extrabold text-xs">{firstWord}</p>
                                     <span className="text-xs opacity-70">{res.location}</span>
                                 </div>
                             )
