@@ -17,9 +17,26 @@ interface DataProps {
 
 export default function Home() {
     const [dataUserOnline, setDataUserOnline] = useState<DataProps[]>([])
+    const [maxAvatars, setMaxAvatars] = useState<number>(10);
+
+    const adjustMaxAvatars = () => {
+        const screenWidth = window.innerWidth;
+        if (screenWidth < 583) {
+            setMaxAvatars(7);
+        } else {
+            setMaxAvatars(10);
+        }
+    };
 
     useEffect(() => {
         setDataUserOnline(userOnline)
+
+        adjustMaxAvatars();
+        window.addEventListener('resize', adjustMaxAvatars);
+
+        return () => {
+            window.removeEventListener('resize', adjustMaxAvatars);
+        };
     }, [])
 
     return (
@@ -113,31 +130,26 @@ export default function Home() {
 
                 <div className="w-full flex justify-center">
                     <AvatarGroup
-                        max={9}
+                        max={maxAvatars}
                         renderSurplus={(surplus) =>
                             <div className="bg-mainColor-100 flex justify-center items-center w-full h-full">
                                 <span className="text-xs mx-auto text-center ">
-                                    {surplus.toString()} more
+                                    {surplus.toString()} <br /> more
                                 </span>
                             </div>
                         }
                         total={50}
-                        className="shadow-shadowCustom rounded-2xl py-4 px-6"
+                        className="avatar-online-custom shadow-shadowCustom rounded-2xl py-4 px-6"
                     >
                         {dataUserOnline.map((res: DataProps, index: number) => {
                             return (
                                 <div key={index} className="text-center">
-                                    <Avatar alt={res.name} src="/static/images/avatar/1.jpg" className="!w-[56px] !h-[56px]" />
+                                    <Avatar alt={res.name} src="/static/images/avatar/1.jpg" />
                                     <p className="font-extrabold text-xs">{res.name}</p>
                                     <span className="text-xs opacity-70">{res.location}</span>
                                 </div>
                             )
                         })}
-                        <div className="text-center !w-[56px] !h-[56px]">
-                            {/* Jangan lupa sesuaikan properti yang diperlukan */}
-                            <Avatar alt="More" src="/static/images/avatar/more.jpg" className="!w-[56px] !h-[56px]" />
-                        </div>
-
                     </AvatarGroup>
                 </div>
             </section>

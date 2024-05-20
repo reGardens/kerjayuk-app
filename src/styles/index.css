@@ -1,5 +1,5 @@
 @import "_tailwind.css";
-@import '@splidejs/react-splide/css';
+@import "@splidejs/react-splide/css";
 
 :root {
   --mainColor: #fc4634;
@@ -49,5 +49,20 @@ html {
 /* pagination custom color */
 .splide__pagination__page.is-active {
   background: var(--mainColor) !important;
+}
+/* ------ */
+
+/* user online avatar custom */
+.avatar-online-custom .css-17o22dy-MuiAvatar-root {
+  position: unset !important;
+  width: 36px !important;
+  height: 36px !important;
+}
+@media only screen and (min-width: 583px) {
+  .avatar-online-custom .css-17o22dy-MuiAvatar-root {
+    position: unset !important;
+    width: 56px !important;
+    height: 56px !important;
+  }
 }
 /* ------ */
