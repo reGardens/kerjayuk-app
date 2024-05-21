@@ -5,11 +5,16 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from './pages/Home';
+import Notification from './pages/Notification';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/notification",
+    element: <Notification />,
   },
 ]);
 

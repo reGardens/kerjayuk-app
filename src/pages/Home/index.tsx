@@ -41,7 +41,7 @@ export default function Home() {
 
     return (
         <Layout>
-            <section className="pb-7 px-5 mb-4">
+            <section className="pt-3 pb-7 px-5 mt-20 mb-4">
                 <p className="font-semibold text-lg mb-4">Hi, Good Morning!</p>
 
                 <div className="w-full mx-auto grid grid-cols-3 grid-rows-2 bg-gradient-to-br from-mainColor-100 to-mainColor-900 p-5 rounded-2xl shadow-lg text-white">

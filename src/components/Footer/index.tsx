@@ -18,7 +18,7 @@ export default function Footer() {
 
     useEffect(() => {
         (ref.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
-    }, [value]);
+    }, [value, setValue]);
 
     return (
         <div className="pb-28 bg-white !z-[999] relative menu" ref={ref}>
