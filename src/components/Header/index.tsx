@@ -15,14 +15,12 @@ export default function Header() {
     return (
         <StickyHeader>
             <div className="flex justify-between items-center pt-5 pb-4 px-5">
-                <p className="font-extrabold text-mainColor-100 bg-red text-3xl">KerjaYuk!</p>
+                <p className="font-extrabold text-mainColor-100 bg-red text-2xl md:text-3xl leading-none">KerjaYuk!</p>
 
                 <Box sx={{ color: 'action.active' }} onClick={handleNotification}>
                     <IconButton>
                         <Badge color="secondary" variant="dot" id="notification-custom">
-                            <NotificationsNoneIcon sx={{
-                                fontSize: 35,
-                            }} />
+                            <NotificationsNoneIcon className='!text-[30px] md:!text-[35px]' />
                         </Badge>
                     </IconButton>
                 </Box>
