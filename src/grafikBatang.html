@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Category Chart</title>
+    <style>
+      :root {
+        --mainColor: #fc4634;
+        --otherMainColor: #34a2fc;
+      }
+      
+      #root,
+      html,
+      body {
+        width: 100%;
+        font-family: "Montserrat", sans-serif;
+        background-color: #f1f5f9;
+      }
+      #app {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+      }
+
+      .chart-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-end;
+        width: 400px;
+        height: 200px;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.2);
+      }
+      .bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .bar-value {
+        border-radius: 5px 5px 0 0;
+        width: 50px;
+        height: 100px;
+        background-color: var(--mainColor);
+        color: white;
+        text-align: center;
+        font-weight: bold;
+      }
+      .bar-value:nth-last-child(1) {
+        background-color: var(--otherMainColor);
+      }
+      .category-name {
+        margin-top: 5px;
+        font-size: 14px;
+      }
+      button {
+        background-color: var(--mainColor);
+        outline: none;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        margin-bottom: 20px;
+        cursor: pointer;
+      }
+      button:nth-last-child(1) {
+        background-color: var(--otherMainColor);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="flex flex-col items-center mt-10">
+      <div class="mb-4">
+        <button
+          id="categoryBtn"
+          class="mr-2 px-4 py-2 rounded bg-blue-500 text-white"
+        >
+          Category
+        </button>
+        <button
+          id="subcategoryBtn"
+          class="px-4 py-2 rounded bg-gray-200 text-gray-700"
+        >
+          Sub Category
+        </button>
+      </div>
+      <div id="chartContainer" class="chart-container"></div>
+    </div>
+
+    <script>
+      const jsonData = {
+        code: 200,
+        msg: "oke",
+        data: {
+          Building: [
+            {
+              id: 14,
+              name: "Create",
+              html_id: "building.create",
+            },
+            {
+              id: 16,
+              name: "Delete",
+              html_id: "building.delete",
+            },
+            {
+              id: 15,
+              name: "Edit",
+              html_id: "building.edit",
+            },
+            {
+              id: 13,
+              name: "Index",
+              html_id: "building.index",
+            },
+          ],
+          Dashboard: [
+            {
+              id: 33,
+              name: "Index",
+              html_id: "dashboard.index",
+            },
+          ],
+          Energy: [
+            {
+              id: 18,
+              name: "Create",
+              html_id: "energy.create",
+            },
+            {
+              id: 20,
+              name: "Delete",
+              html_id: "energy.delete",
+            },
+            {
+              id: 19,
+              name: "Edit",
+              html_id: "energy.edit",
+            },
+            {
+              id: 17,
+              name: "Index",
+              html_id: "energy.index",
+            },
+          ],
+        },
+      };
+
+      const chartContainer = document.getElementById("chartContainer");
+      const categoryBtn = document.getElementById("categoryBtn");
+      const subcategoryBtn = document.getElementById("subcategoryBtn");
+
+      function renderChart(type) {
+        const counts = {};
+
+        if (type === "category") {
+          for (const category in jsonData.data) {
+            if (Object.prototype.hasOwnProperty.call(jsonData.data, category)) {
+              counts[category] = jsonData.data[category].length;
+            }
+          }
+        } else if (type === "subcategory") {
+          for (const category in jsonData.data) {
+            if (Object.prototype.hasOwnProperty.call(jsonData.data, category)) {
+              jsonData.data[category].forEach((subcategory) => {
+                counts[subcategory.name] = counts[subcategory.name]
+                  ? counts[subcategory.name] + 1
+                  : 1;
+              });
+            }
+          }
+        }
+
+        chartContainer.innerHTML = "";
+
+        Object.entries(counts).forEach(([key, value]) => {
+          const bar = document.createElement("div");
+          bar.classList.add("bar");
+
+          const barValue = document.createElement("div");
+          barValue.classList.add("bar-value");
+          barValue.textContent = value;
+          bar.appendChild(barValue);
+
+          const categoryName = document.createElement("div");
+          categoryName.classList.add("category-name");
+          categoryName.textContent = key;
+          bar.appendChild(categoryName);
+
+          chartContainer.appendChild(bar);
+        });
+      }
+
+      categoryBtn.addEventListener("click", () => {
+        categoryBtn.classList.add("bg-blue-500", "text-white");
+        subcategoryBtn.classList.remove("bg-blue-500", "text-white");
+        renderChart("category");
+      });
+
+      subcategoryBtn.addEventListener("click", () => {
+        subcategoryBtn.classList.add("bg-blue-500", "text-white");
+        categoryBtn.classList.remove("bg-blue-500", "text-white");
+        renderChart("subcategory");
+      });
+
+      // Render chart on initial load
+      renderChart("category");
+    </script>
+  </body>
+</html>
